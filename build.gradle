@@ -1,0 +1,37 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'game-of-life'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java']
+        groovy.srcDirs = []
+    }
+    test {
+        java.srcDirs = []
+        groovy.srcDirs = ['src/test/java']
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    def lombok = 'org.projectlombok:lombok:1.18.8'
+
+    annotationProcessor(lombok)
+    compileOnly(lombok)
+    compile group: 'com.google.guava', name: 'guava', version: '28.1-jre'
+    testCompile(
+        'org.codehaus.groovy:groovy-all:2.5.7',
+        'org.spockframework:spock-core:1.2-groovy-2.5'
+    )
+}
